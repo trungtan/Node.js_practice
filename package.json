@@ -1,0 +1,22 @@
+{
+  "name": "node.js_practice",
+  "version": "1.0.0",
+  "description": "Practice with MVA videos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/trungtan/node.js_practice.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Tan Bui",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/trungtan/node.js_practice#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
