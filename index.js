@@ -2,6 +2,11 @@
  * Created by trung on 05-Jan-17.
  */
 
+/**
+ * A simple web app at port 80
+ * to run: node index
+ */
+
 "use strict";
 
 const http = require('http');
