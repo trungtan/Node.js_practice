@@ -11,15 +11,19 @@
 
 const http = require('http');
 const express = require('express');
+const fs = require('fs');
+
+const configFile = fs.readFileSync('./config.json');
+const config = JSON.parse(configFile);
 
 const app = express();
-app.use(express.static('www'));
+app.use(express.static(config.webServer.dir));
 
 const httpServer = http.createServer(app);
-httpServer.listen(80, function (err) {
+httpServer.listen(config.webServer.port, function (err) {
     if (err) {
         console.log(err.message);
         return;
     }
-    console.log('Server is running at port 80.');
+    console.log(`Server is running at port ${config.webServer.port}.`);
 });

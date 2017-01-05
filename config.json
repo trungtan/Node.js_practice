@@ -1,0 +1,6 @@
+{
+  "webServer": {
+    "dir": "www",
+    "port": 80
+  }
+}
