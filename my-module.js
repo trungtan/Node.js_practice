@@ -21,3 +21,15 @@ module.exports = {
         console.log("Don't need to import this.")
     }
 };
+
+module.exports = {
+    tempData: 'no data',
+
+    setData: function (data) {
+        this.tempData = data;
+    },
+
+    showData: function () {
+        console.log(this.tempData);
+    }
+};

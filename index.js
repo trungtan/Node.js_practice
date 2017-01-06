@@ -21,6 +21,15 @@ const configB = myMod({
 configB.log("This is my second log content.");*/
 
 
+/*
 const { necessary, second: sec } = require("./my-module");
 necessary();
 sec();
+*/
+
+const myMod1 = require('./my-module');
+myMod1.setData('Data by module 1');
+myMod1.showData();
+const myMod2 = require('./my-module');  //singleton require
+myMod2.showData();
+console.log(myMod1 === myMod2);
