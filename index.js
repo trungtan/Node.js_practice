@@ -21,5 +21,6 @@ const configB = myMod({
 configB.log("This is my second log content.");*/
 
 
-const { necessary } = require("./my-module");
+const { necessary, second } = require("./my-module");
 necessary();
+second();

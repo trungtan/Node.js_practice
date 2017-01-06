@@ -14,6 +14,9 @@ module.exports = {
     necessary: function () {
         console.log("This is your necessary module.")
     },
+    second: function () {
+        console.log("This is your second necessary module.")
+    },
     unnecessary: function () {
         console.log("Don't need to import this.")
     }
