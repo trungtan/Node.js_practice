@@ -8,7 +8,7 @@
  */
 
 "use strict";
-const myMod = require('./my-module');
+/*const myMod = require('./my-module');
 
 const configA = myMod({
     logPrefix: 'Config A: '
@@ -18,4 +18,8 @@ configA.log("This is my log content.");
 const configB = myMod({
     logPrefix: 'Config B: '
 });
-configB.log("This is my second log content.");
+configB.log("This is my second log content.");*/
+
+
+const { necessary } = require("./my-module");
+necessary();

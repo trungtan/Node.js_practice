@@ -9,3 +9,12 @@ module.exports = function(config) {
         }
     }
 };
+
+module.exports = {
+    necessary: function () {
+        console.log("This is your necessary module.")
+    },
+    unnecessary: function () {
+        console.log("Don't need to import this.")
+    }
+};
