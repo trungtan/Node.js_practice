@@ -6,7 +6,7 @@
  *  Run this to execute>
  *      node dist/es2015
  */
-import { Test } from "./es2015_2";
+import { MyTest as Test } from "./MyTest";
 import Cal from "./calculator";
 
 var t = new Test();

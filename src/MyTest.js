@@ -3,7 +3,7 @@
  */
 "use strict";
 
-export class Test {
+export class MyTest {
     show() {
         console.log("Show a test.")
     }

@@ -1,6 +1,6 @@
 "use strict";
 
-var _es2015_ = require("./es2015_2");
+var _MyTest = require("./MyTest");
 
 var _calculator = require("./calculator");
 
@@ -16,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  Run this to execute>
  *      node dist/es2015
  */
-var t = new _es2015_.Test();
+var t = new _MyTest.MyTest();
 t.show();
 
 console.log(_calculator2.default.plus(12, 13));
