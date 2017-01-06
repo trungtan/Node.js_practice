@@ -1,6 +1,6 @@
 {
   "webServer": {
     "dir": "www",
-    "port": 80
+    "port": 8080
   }
 }

@@ -22,12 +22,13 @@ fs.readFile('./config.json', function (err, data) {
     app.use(express.static(config.webServer.dir));
 
     const httpServer = http.createServer(app);
-    httpServer.listen(config.webServer.port, function (err) {
+    const port = process.env.PORT || config.webServer.port;
+    httpServer.listen(port, function (err) {
         if (err) {
             console.log(err.message);
             return;
         }
-        console.log(`Server is running at port ${config.webServer.port}.`);
+        console.log(`Server is running at port ${port}.`);
     });
 });
 
