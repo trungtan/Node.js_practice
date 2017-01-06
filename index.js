@@ -8,28 +8,14 @@
  */
 
 "use strict";
+const myMod = require('./my-module');
 
-const http = require('http');
-const express = require('express');
-const fs = require('fs');
-
-//const configFile = fs.readFileSync('./config.json');
-
-fs.readFile('./config.json', function (err, data) {
-    const config = JSON.parse(data);
-
-    const app = express();
-    app.use(express.static(config.webServer.dir));
-
-    const httpServer = http.createServer(app);
-    const port = process.env.PORT || config.webServer.port;
-    httpServer.listen(port, function (err) {
-        if (err) {
-            console.log(err.message);
-            return;
-        }
-        console.log(`Server is running at port ${port}.`);
-    });
+const configA = myMod({
+    logPrefix: 'Config A: '
 });
+configA.log("This is my log content.");
 
-console.log('Reading config file...');
+const configB = myMod({
+    logPrefix: 'Config B: '
+});
+configB.log("This is my second log content.");
