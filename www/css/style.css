@@ -1,0 +1,4 @@
+body { font-size:100%; margin:0; padding:0; background-color: lightcyan}
+form { margin:20px; }
+label { display: block; overflow: auto; margin-top:5px; margin-bottom:5px; }
+input { position: absolute; left: 70px; }
