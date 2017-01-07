@@ -43,12 +43,19 @@ const server = http.createServer((req, res) => {
 
 	const processFile = new Promise(resolve => {
 
-		resolve();
-
-		res.writeHead(200);
-		res.end('Hello World!');
-
 		// demo #3: read request file
+        fs.readFile(fileName, 'utf8', (err, data) => {
+            if (err) {
+                console.log(err);
+                res.writeHead(404);
+                res.end('File not found!');
+                return;
+            }
+            res.writeHead(200);
+            res.end(data);
+        });
+
+        resolve();
 
 		// demo #7: compressing response
 
