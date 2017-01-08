@@ -55,14 +55,19 @@ const server = http.createServer((req, res) => {
         dir: path.join(__dirname, 'www', dirPath),
         base: path.basename(req.path)
     });
-    console.log(fileName);
 
 	const processBody = new Promise(resolve => {
-
-		resolve();
-
 		// demo #6: process request body data
-
+        if (req.method === 'POST') {
+            const reqBuffers = [];
+            req.on('data', chunk => reqBuffers.push(new Buffer(chunk)));
+            req.on('end', () => {
+                console.log(Buffer.concat(reqBuffers).toString('utf8'));
+                resolve();
+            });
+        } else {
+            resolve();
+        }
 	});
 
 	const processFile = new Promise(resolve => {
