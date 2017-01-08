@@ -9,10 +9,29 @@ const fs = require('fs');
 const path = require('path');
 
 const defaultFile = 'index.html';
-const logFile = 'web.log';
+var logFile = `logs${path.sep}web.log`;
 const port = 3000;
 
 // demo #5: rotate log file
+try {
+    fs.statSync(logFile);
+    const {dir: dirName, name: fileName, ext: fileExt} = path.parse(logFile);
+
+    let i = 0;
+    let nextFileName;
+
+    try {
+        do {
+            nextFileName = `${dirName}${path.sep}${fileName}_${++i}${fileExt}`;
+        } while (fs.statSync(nextFileName));
+    }catch(err) {
+        fs.renameSync(logFile, nextFileName);
+        console.log(`Log file name changed from ${logFile} to ${nextFileName}`);
+        logFile = nextFileName;
+    }
+} catch (err) {
+    console.log(`Log file ${logFile} not found.`);
+}
 
 // demo #4: append to log file
 const log = function (entry) {

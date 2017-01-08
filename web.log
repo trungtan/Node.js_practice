@@ -1,7 +1,0 @@
-Info: GET - /
-Info: GET - /css/style.css
-Error: Error: ENOENT: no such file or directory, open 'E:\www\node.js_practice\www\favicon.ico'
-Info: GET - /css/style.css
-Error: Error: ENOENT: no such file or directory, open 'E:\www\node.js_practice\www\index.htm'
-Info: GET - /
-Info: GET - /css/style.css
