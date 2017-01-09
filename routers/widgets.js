@@ -14,7 +14,15 @@ widgetRouter.route('/widgets')
     .get((req, res) => {
             res.json(data);
         }
-    );
+    )
+    .post( (req, res) => {
+        let insertingItem = req.body;
+        data.push(insertingItem);
+        res.json([
+            {result: 'successful'},
+            {inserted_item: insertingItem}
+        ])
+    });
 
 widgetRouter.route('/widget/:widgetId')
     .get( (req, res) => {
@@ -26,7 +34,7 @@ widgetRouter.route('/widget/:widgetId')
             data.splice(req.params.widgetId - 1, 1);
             res.json([
                 {result: 'successful'},
-                {delete_item: deletingItem}
+                {deleted_item: deletingItem}
             ])
         }
     );
