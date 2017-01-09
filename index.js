@@ -14,6 +14,17 @@ const fs = require('fs');
 const express = require('express');
 const widgetRouter = require('./routers/widgets');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+
+const {Strategy, ExtractJwt} = require('passport-jwt');
+const jwtOptions = {
+    jwtFromRequest : ExtractJwt.fromAuthHeader(),
+    secretOrKey : 'mySecretK3y',
+    algorithms: ['HS256']
+};
+passport.use(new Strategy(jwtOptions, (jwtPayload, done) => {
+    done(null, {name: jwtPayload.name});
+}));
 
 //const configFile = fs.readFileSync('./config.json');
 
@@ -25,6 +36,7 @@ fs.readFile('./config.json', function (err, data) {
     const httpServer = http.createServer(app);
 
     //2. Use the Router
+    app.use(passport.authenticate('jwt', {session: false}));
     app.use(bodyParser.urlencoded({ extended: false })); //Content-type must be Content-Type: application/x-www-form-urlencoded
     app.use('/api', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
     app.use('/api', widgetRouter);

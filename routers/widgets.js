@@ -1,5 +1,13 @@
 /**
  * Created by tan.bui on 9.1.2017.
+ * After enabling JWT authentication, the REST client must add the authorization to header
+ *  https://jwt.io/
+ *
+ GET /api/widgets HTTP/1.1
+ Host: localhost:8080
+ Authorization: JWT  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlRhbiBCdWkiLCJhZG1pbiI6ZmFsc2V9.GT5JbFEM7DFN9u2-FOb8KffFm4ojXq4eXyq0urPcSWU
+ Cache-Control: no-cache
+ Postman-Token: 7ab0d956-cda0-6a0a-d0cb-e908661fc5a6
  */
 const express = require('express');
 const widgetRouter = express.Router();
