@@ -10,26 +10,21 @@
 "use strict";
 
 const http = require('http');
-const express = require('express');
 const fs = require('fs');
+const express = require('express');
+const widgetRouter = require('./routers/widgets');
 
 //const configFile = fs.readFileSync('./config.json');
 
 fs.readFile('./config.json', function (err, data) {
-    //1. Init and config
+    //1. Init and config the server
     const config = JSON.parse(data);
     const app = express();
     app.use(express.static(config.webServer.dir));
     const httpServer = http.createServer(app);
 
-    //2. Data, route and process
-    app.get('/api/widgets', (req, res) => {
-        res.json([
-            { name: 'Bui Tan', email: 'tan@gmail.com', age: 28},
-            { name: 'Tan Bui', email: 'tanbui@gmail.com', age: 29},
-            { name: 'Tan Bui', school: 'TUAS', gender: 'male'},
-        ]);
-    });
+    //2. Use the Router
+    app.use('/api', widgetRouter);
 
     //3. Listening
     const port = process.env.PORT || config.webServer.port;
