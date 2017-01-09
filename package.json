@@ -19,5 +19,8 @@
   "homepage": "https://bitbucket.org/trungtan/node.js_practice#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
   }
 }
