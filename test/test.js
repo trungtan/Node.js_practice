@@ -9,11 +9,11 @@
 
 var assert = require("assert");
 
-describe('Testing JSON reader', () => {
-    it('should get json', (done) => {
-        let reader = require('./JSONReader');
-        assert.equal(typeof  reader, 'object');
-        assert.equal(typeof  reader.read, 'function');
+describe('Title: Testing JSON reader', () => {
+    it('Task 1: should get json', (done) => {
+        let reader = require('../JSONReader');
+        assert.equal(typeof reader, 'object');
+        assert.equal(typeof reader.read, 'function');
         done();
     });
 });
