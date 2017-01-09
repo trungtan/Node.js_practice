@@ -22,9 +22,11 @@ widgetRouter.route('/widget/:widgetId')
         }
     )
     .delete( (req, res) => {
+            let deletingItem = data[req.params.widgetId - 1];
             data.splice(req.params.widgetId - 1, 1);
             res.json([
-                {result: 'successful'}
+                {result: 'successful'},
+                {delete_item: deletingItem}
             ])
         }
     );
