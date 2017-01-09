@@ -9,27 +9,11 @@
 
 "use strict";
 
-const http = require('http');
-const express = require('express');
-const fs = require('fs');
+const BookClass = require('./book');
 
-//const configFile = fs.readFileSync('./config.json');
-
-fs.readFile('./config.json', function (err, data) {
-    const config = JSON.parse(data);
-
-    const app = express();
-    app.use(express.static(config.webServer.dir));
-
-    const httpServer = http.createServer(app);
-    const port = process.env.PORT || config.webServer.port;
-    httpServer.listen(port, function (err) {
-        if (err) {
-            console.log(err.message);
-            return;
-        }
-        console.log(`Server is running at port ${port}.`);
-    });
+const book = new BookClass();
+book.on('rated', () => {
+    console.log(`Rated with ${book.getRate()} points.`);
 });
 
-console.log('Reading config file...');
+book.rate(11);
