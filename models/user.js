@@ -11,21 +11,13 @@ const url = 'mongodb://localhost:27017/nodejs_practice';
 function insertMockDocuments() {
     MongoClient.connect(url, (err, db) => {
 
-        db.collection('users').count((err, count) => {
-            if  (count == 0) {
-                db.collection("users", (err, col) => {
-                    col.insertMany([
-                        { id: 0, name: 'Bui Tan', email: 'tan@gmail.com', age: 28},
-                        { id: 1, name: 'Tan Bui', email: 'tanbui@gmail.com', age: 29},
-                        { id: 2, name: 'Tan Bui', school: 'TUAS', gender: 'male'},
-                    ], (err, r) => {
-                        assert.equal(null, err);
-                        assert.equal(3, r.insertedCount)
-                    });
-                });
-            }
+        db.collection("users", (err, col) => {
+            col.insertMany([
+                { id: 0, name: 'Bui Tan', email: 'tan@gmail.com', age: 28},
+                { id: 1, name: 'Tan Bui', email: 'tanbui@gmail.com', age: 29},
+                { id: 2, name: 'Tan Bui', school: 'TUAS', gender: 'male'},
+            ]);
         });
-
 
         db.close();
     });
@@ -43,8 +35,17 @@ function insertOne(user) {
     });
 }
 
-
+function getAll(res) {
+    MongoClient.connect(url, (err, db) => {
+        db.collection("users", (err, col) => {
+            col.find().toArray( (err, items) => {
+                res.json(items);
+            });
+        });
+        db.close();
+    });
+}
 
 module.exports = {
-    insertMockDocuments, insertOne
+    insertMockDocuments, insertOne, getAll
 };

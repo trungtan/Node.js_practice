@@ -18,7 +18,7 @@ User.insertMockDocuments();
 widgetRouter.route('/widgets')
     //GET /api/widgets HTTP/1.1
     .get((req, res) => {
-            res.json(data);
+            User.getAll(res);
         }
     )
     /**
