@@ -11,12 +11,9 @@
  */
 const express = require('express');
 const widgetRouter = express.Router();
+const User = require('../models/user');
 
-var data = [
-    { id: 0, name: 'Bui Tan', email: 'tan@gmail.com', age: 28},
-    { id: 1, name: 'Tan Bui', email: 'tanbui@gmail.com', age: 29},
-    { id: 2, name: 'Tan Bui', school: 'TUAS', gender: 'male'},
-];
+User.insertMockDocuments();
 
 widgetRouter.route('/widgets')
     //GET /api/widgets HTTP/1.1
