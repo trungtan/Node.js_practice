@@ -24,8 +24,20 @@ function insertMockDocuments() {
     });
 }
 
+function insertOne(user) {
+    MongoClient.connect(url, (err, db) => {
+        db.collection("users", (err, col) => {
+            col.insertOne(user, (err, r) => {
+                assert.equal(null, err);
+                console.log("Inserted a user.");
+            });
+        });
+        db.close();
+    });
+}
+
 
 
 module.exports = {
-    insertMockDocuments
+    insertMockDocuments, insertOne
 };

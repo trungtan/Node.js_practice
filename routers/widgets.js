@@ -29,8 +29,8 @@ widgetRouter.route('/widgets')
      id=10&name=From+Client&age=Brand+new
      */
      .post( (req, res) => {              //Content-type must be Content-Type: application/x-www-form-urlencoded
-        let insertingItem = req.body;
-        data.push(insertingItem);
+        let insertingItem = req.body;   //req.body is an object
+        User.insertOne(insertingItem);
         res.json([
             {result: 'successful'},
             {inserted_item: insertingItem}
