@@ -16,11 +16,11 @@ const Account = require('../models/account');
 Account.collection.deleteMany();
 Account.collection.insertMany([
     {
-        username: "Tan Bui",
+        username: "tanbui",
         password: "testing password"
     },
     {
-        username: "Bui Tan",
+        username: "buitan",
         password: "password"
     }
 ]);
@@ -49,10 +49,12 @@ accountRouter.route('/accounts')
         ])
     });
 
-accountRouter.route('/accounts/:accountId')
+accountRouter.route('/accounts/:username')
     //GET /api/accounts/2 HTTP/1.1
     .get( (req, res) => {
-            account.getOne(res, parseInt(req.params.accountId));     //make sure that "id" is correct data type
+            Account.findOne({username: req.params.username}, (err, item)=> {
+                res.json(item);
+            });
         }
     )
     //DELETE /api/account/2
