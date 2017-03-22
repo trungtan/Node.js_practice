@@ -50,16 +50,18 @@ accountRouter.route('/accounts')
     });
 
 accountRouter.route('/accounts/:username')
-    //GET /api/accounts/2 HTTP/1.1
+    //GET /api/accounts/tanbui HTTP/1.1
     .get( (req, res) => {
             Account.findOne({username: req.params.username}, (err, item)=> {
                 res.json(item);
             });
         }
     )
-    //DELETE /api/account/2
+    //DELETE /api/account/tanbui
     .delete( (req, res) => {
-        account.deleteOne(res, parseInt(req.params.accountId))
+        Account.remove({username: req.params.username}, (err, r) => {
+            res.json(r);
+        });
     })
 
     /**
