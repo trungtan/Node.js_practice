@@ -47,7 +47,7 @@ function getAll(res) {
     });
 }
 
-function getOne(res, id) {
+function getOne(res, id) {      //make sure that "id" is correct data type
     MongoClient.connect(url, (err, db) => {
         db.collection("users", (err, col) => {
             col.find({"id": id}).toArray( (err, items) => {

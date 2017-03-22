@@ -40,7 +40,7 @@ widgetRouter.route('/widgets')
 widgetRouter.route('/widgets/:widgetId')
     //GET /api/widgets/2 HTTP/1.1
     .get( (req, res) => {
-            User.getOne(res, parseInt(req.params.widgetId));
+            User.getOne(res, parseInt(req.params.widgetId));     //make sure that "id" is correct data type
         }
     )
     //DELETE /api/widget/2
