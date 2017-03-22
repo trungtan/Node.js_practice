@@ -27,8 +27,10 @@ passport.use(new Strategy(jwtOptions, (jwtPayload, done) => {
     done(null, {name: jwtPayload.name});
 }));
 
-//const configFile = fs.readFileSync('./config.json');
+const mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost:27017/nodejs_practice');
 
+//const configFile = fs.readFileSync('./config.json');
 fs.readFile('./config.json', function (err, data) {
     //1. Init and config the server
     const config = JSON.parse(data);
