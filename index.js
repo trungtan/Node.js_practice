@@ -42,10 +42,8 @@ fs.readFile('./config.json', function (err, data) {
     app.use(passport.authenticate('jwt', {session: false}));
     app.use(bodyParser.urlencoded({ extended: false })); //Content-type must be Content-Type: application/x-www-form-urlencoded
     app.use('/api', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
-    app.use('/api', widgetRouter);
-
-    app.use('/accounts', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
-    app.use('/accounts', accountRouter);
+    //app.use('/api', widgetRouter);
+    app.use('/api', accountRouter);
 
     //3. Listening
     const port = process.env.PORT || config.webServer.port;

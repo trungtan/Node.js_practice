@@ -28,7 +28,9 @@ Account.collection.insertMany([
 accountRouter.route('/accounts')
     //GET /api/accounts HTTP/1.1
     .get((req, res) => {
-            account.getAll(res);
+            Account.find((err, items) => {
+                res.json(items);
+            });
         }
     )
     /**
