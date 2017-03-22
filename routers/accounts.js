@@ -11,9 +11,19 @@
  */
 const express = require('express');
 const accountRouter = express.Router();
-const account = require('../models/account');
+const Account = require('../models/account');
 
-account.insertMockDocuments();
+Account.collection.deleteMany();
+Account.collection.insertMany([
+    {
+        username: "Tan Bui",
+        password: "testing password"
+    },
+    {
+        username: "Bui Tan",
+        password: "password"
+    }
+]);
 
 accountRouter.route('/accounts')
     //GET /api/accounts HTTP/1.1

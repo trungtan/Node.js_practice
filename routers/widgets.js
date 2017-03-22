@@ -13,7 +13,7 @@ const express = require('express');
 const widgetRouter = express.Router();
 const User = require('../models/user');
 
-User.insertMockDocuments();
+//User.insertMockDocuments();
 
 widgetRouter.route('/widgets')
     //GET /api/widgets HTTP/1.1
