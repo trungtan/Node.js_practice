@@ -13,6 +13,7 @@ const http = require('http');
 const fs = require('fs');
 const express = require('express');
 const widgetRouter = require('./routers/widgets');
+const accountRouter = require('./routers/accounts');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -40,6 +41,9 @@ fs.readFile('./config.json', function (err, data) {
     app.use(bodyParser.urlencoded({ extended: false })); //Content-type must be Content-Type: application/x-www-form-urlencoded
     app.use('/api', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
     app.use('/api', widgetRouter);
+
+    app.use('/accounts', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
+    app.use('/accounts', accountRouter);
 
     //3. Listening
     const port = process.env.PORT || config.webServer.port;
