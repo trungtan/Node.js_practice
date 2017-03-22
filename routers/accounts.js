@@ -65,17 +65,24 @@ accountRouter.route('/accounts/:username')
     })
 
     /**
-     PUT /api/accounts/2 HTTP/1.1
+     PUT /api/accounts/tanbui HTTP/1.1
      Host: localhost:8080
      Content-Type: application/x-www-form-urlencoded
+     Authorization: JWT  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlRhbiBCdWkiLCJhZG1pbiI6ZmFsc2V9.GT5JbFEM7DFN9u2-FOb8KffFm4ojXq4eXyq0urPcSWU
      Cache-Control: no-cache
+     Postman-Token: a85410ac-64b4-e716-e83a-3a54fcd28861
 
-     name=edit+From+Client&age=Edit+Brand+new&newProp=Value+new+prop
+     bio=My+bio&password=just+for+testing
      */
     .put( (req, res) => {
-        let updatingObj = JSON.parse(JSON.stringify(req.body));
-        updatingObj.id = parseInt(req.params.accountId);
-        account.updateOne(res, updatingObj);
+        let obj = JSON.parse(JSON.stringify(req.body));
+        Account.update({username: req.params.username}, {
+            password: obj.password,
+            bio: obj.bio
+        }, (err, r) => {
+            res.json(r);
+        });
+
     });
 
 module.exports = accountRouter;
