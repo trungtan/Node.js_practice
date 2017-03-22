@@ -58,6 +58,22 @@ function getOne(res, id) {      //make sure that "id" is correct data type
     });
 }
 
+function deleteOne(res, id) {
+    MongoClient.connect(url, (err, db) => {
+        db.collection("users", (err, col) => {
+            col.deleteOne({"id": id}, (err, r) => { //deleteMany
+                assert.equal(null, err);
+                res.json({
+                    result: 'successful',
+                    operation: 'delete',
+                    count: r.deletedCount
+                })
+            })
+        });
+        db.close();
+    });
+}
+
 module.exports = {
-    insertMockDocuments, insertOne, getAll, getOne
+    insertMockDocuments, insertOne, getAll, getOne, deleteOne
 };

@@ -45,14 +45,8 @@ widgetRouter.route('/widgets/:widgetId')
     )
     //DELETE /api/widget/2
     .delete( (req, res) => {
-            let deletingItem = data[req.params.widgetId];
-            data.splice(req.params.widgetId, 1);
-            res.json([
-                {result: 'successful'},
-                {deleted_item: deletingItem}
-            ])
-        }
-    )
+        User.deleteOne(res, parseInt(req.params.widgetId))
+    })
 
     /**
      PUT /api/widget/2 HTTP/1.1
