@@ -1,5 +1,6 @@
 /**
  * Created by tan on 3/21/2017.
+ * http://mongodb.github.io/node-mongodb-native/2.2/
  * http://mongodb.github.io/node-mongodb-native/2.0/api/Collection.html?_ga=1.236825473.1848870889.1488224984#insertMany
  */
 "use strict";
@@ -46,6 +47,17 @@ function getAll(res) {
     });
 }
 
+function getOne(res, id) {
+    MongoClient.connect(url, (err, db) => {
+        db.collection("users", (err, col) => {
+            col.find({"id": id}).toArray( (err, items) => {
+                res.json(items);
+            });
+        });
+        db.close();
+    });
+}
+
 module.exports = {
-    insertMockDocuments, insertOne, getAll
+    insertMockDocuments, insertOne, getAll, getOne
 };

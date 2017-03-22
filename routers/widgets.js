@@ -37,10 +37,10 @@ widgetRouter.route('/widgets')
         ])
     });
 
-widgetRouter.route('/widget/:widgetId')
-    //GET /api/widget/2 HTTP/1.1
+widgetRouter.route('/widgets/:widgetId')
+    //GET /api/widgets/2 HTTP/1.1
     .get( (req, res) => {
-            res.json(data[req.params.widgetId]);
+            User.getOne(res, parseInt(req.params.widgetId));
         }
     )
     //DELETE /api/widget/2
