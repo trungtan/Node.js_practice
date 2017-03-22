@@ -58,15 +58,8 @@ widgetRouter.route('/widgets/:widgetId')
      */
     .put( (req, res) => {
         let updatingObj = JSON.parse(JSON.stringify(req.body));
-        updatingObj.id = req.params.widgetId;
-
-        data.splice(updatingObj.id, 1);
-        data.push(updatingObj);
-
-        res.json([
-            {result: 'successful'},
-            {updated_item: updatingObj}
-        ])
+        updatingObj.id = parseInt(req.params.widgetId);
+        User.updateOne(res, updatingObj);
     });
 
 module.exports = widgetRouter;

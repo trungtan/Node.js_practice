@@ -16,7 +16,7 @@ function insertMockDocuments() {
             col.insertMany([
                 { id: 0, name: 'Bui Tan', email: 'tan@gmail.com', age: 28},
                 { id: 1, name: 'Tan Bui', email: 'tanbui@gmail.com', age: 29},
-                { id: 2, name: 'Tan Bui', school: 'TUAS', gender: 'male'},
+                { id: 2, name: 'Tan Bui', school: 'TUAS', gender: 'male', age: 27},
             ]);
         });
 
@@ -74,6 +74,30 @@ function deleteOne(res, id) {
     });
 }
 
+function updateOne(res, obj) {
+    MongoClient.connect(url, (err, db) => {
+        db.collection("users", (err, col) => {
+            col.findOneAndUpdate({"id": obj.id},
+                {$set: {
+                    name: obj.name,
+                    school: obj.school,
+                    age: obj.age
+                }}, {
+                    returnOriginal: false   //return the updated doc
+                    , upsert: true
+                }, function(err, r) {
+                    assert.equal(null, err);
+                    res.json({
+                        result: 'successful',
+                        operation: 'update',
+                        data: r.value
+                    })
+                });
+        });
+        db.close();
+    });
+}
+
 module.exports = {
-    insertMockDocuments, insertOne, getAll, getOne, deleteOne
+    insertMockDocuments, insertOne, getAll, getOne, deleteOne, updateOne
 };
