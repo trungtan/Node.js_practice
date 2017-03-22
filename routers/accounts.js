@@ -41,12 +41,15 @@ accountRouter.route('/accounts')
      id=10&name=From+Client&age=Brand+new
      */
      .post( (req, res) => {              //Content-type must be Content-Type: application/x-www-form-urlencoded
-        let insertingItem = req.body;   //req.body is an object
-        account.insertOne(insertingItem);
-        res.json([
-            {result: 'successful'},
-            {inserted_item: insertingItem}
-        ])
+         let obj = JSON.parse(JSON.stringify(req.body));
+         let newAcount = new Account({
+             username: obj.username,
+             password: obj.password,
+             bio: obj.bio
+         });
+         newAcount.save((err, r) => {
+             res.json(r);
+         });
     });
 
 accountRouter.route('/accounts/:username')
