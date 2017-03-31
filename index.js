@@ -3,6 +3,7 @@
  */
 
 /**
+ * SET env var MONGO_URL=mongodb://localhost:27017/nodejs_practice
  * A simple web app at port 80
  * to run: node index
  */
@@ -12,7 +13,7 @@
 const http = require('http');
 const fs = require('fs');
 const express = require('express');
-const widgetRouter = require('./routers/widgets');
+//const widgetRouter = require('./routers/widgets');
 const accountRouter = require('./routers/accounts');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -28,7 +29,6 @@ passport.use(new Strategy(jwtOptions, (jwtPayload, done) => {
 }));
 
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/nodejs_practice');
 
 //const configFile = fs.readFileSync('./config.json');
 fs.readFile('./config.json', function (err, data) {
@@ -38,14 +38,20 @@ fs.readFile('./config.json', function (err, data) {
     app.use(express.static(config.webServer.dir));
     const httpServer = http.createServer(app);
 
-    //2. Use the Router
+    //2. connect mongo db server before calling router
+    mongoose.connect(config.mongoServer.uri || process.env.MONGO_URL, function (error) {
+        if (error) console.error(error);
+        else console.log('Mongo connected');
+    });
+
+    //3. Use the Router
     app.use(passport.authenticate('jwt', {session: false}));
     app.use(bodyParser.urlencoded({ extended: false })); //Content-type must be Content-Type: application/x-www-form-urlencoded
     app.use('/api', bodyParser.json()); //bodyParser will setup a new property on the request object called 'body'
     //app.use('/api', widgetRouter);
     app.use('/api', accountRouter);
 
-    //3. Listening
+    //4. Listening
     const port = process.env.PORT || config.webServer.port;
     httpServer.listen(port, function (err) {
         if (err) {

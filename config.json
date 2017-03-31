@@ -2,5 +2,8 @@
   "webServer": {
     "dir": "www",
     "port": 8080
+  },
+  "mongoServer": {
+    "uri": "mongodb://tanbt:dfagdfag@ds145750.mlab.com:45750/demo_db"
   }
 }
