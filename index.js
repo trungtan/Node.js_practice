@@ -39,7 +39,7 @@ fs.readFile('./config.json', function (err, data) {
     const httpServer = http.createServer(app);
 
     //2. connect mongo db server before calling router
-    mongoose.connect(config.mongoServer.uri || process.env.MONGO_URL, function (error) {
+    mongoose.connect(process.env.MONGO_URL || config.mongoServer.uri, function (error) {
         if (error) console.error(error);
         else console.log('Mongo connected');
     });
